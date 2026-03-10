@@ -1,0 +1,80 @@
+it-support-labs/
+│
+├─ README.md
+├─ .gitignore
+├─ Active-Directory/
+│  ├─ README.md
+│  ├─ Account-Lockout/
+│  │  └─ README.md
+│  ├─ Password-Reset/
+│  │  └─ README.md
+│  ├─ Group-Membership-Issue/
+│  │  └─ README.md
+│  ├─ Domain-Login-Failure/
+│  │  └─ README.md
+│  └─ GPO-Issue/
+│     └─ README.md
+│
+├─ DNS/
+│  ├─ README.md
+│  ├─ DNS-Server-Not-Responding/
+│  │  └─ README.md
+│  ├─ Broken-A-Record/
+│  │  └─ README.md
+│  ├─ Wrong-DNS-Client-Settings/
+│  │  └─ README.md
+│  └─ SRV-Record-Issue/
+│     └─ README.md
+│
+├─ Networking/
+│  ├─ README.md
+│  ├─ IP-Configuration-Issue/
+│  │  └─ README.md
+│  ├─ Firewall-Blocking-Port/
+│  │  └─ README.md
+│  ├─ No-Internet-Connectivity/
+│  │  └─ README.md
+│  └─ Name-Resolution-vs-Connectivity/
+│     └─ README.md
+│
+├─ File-Share-and-Permissions/
+│  ├─ README.md
+│  ├─ Shared-Folder-Access-Denied/
+│  │  └─ README.md
+│  ├─ NTFS-vs-Share-Permissions/
+│  │  └─ README.md
+│  ├─ Mapped-Drive-Failure/
+│  │  └─ README.md
+│  └─ Credential-Conflict/
+│     └─ README.md
+│
+├─ SaaS-and-Web-Support/
+│  ├─ README.md
+│  ├─ API-Authentication-Failure/
+│  │  └─ README.md
+│  ├─ Certificate-Expired/
+│  │  └─ README.md
+│  ├─ DNS-Impacting-Web-App/
+│  │  └─ README.md
+│  └─ HTTP-Status-Code-Troubleshooting/
+│     └─ README.md
+│
+├─ System-Administration/
+│  ├─ README.md
+│  ├─ Service-Failure/
+│  │  └─ README.md
+│  ├─ Disk-Full/
+│  │  └─ README.md
+│  ├─ Profile-Corruption/
+│  │  └─ README.md
+│  └─ Event-Viewer-Investigation/
+│     └─ README.md
+│
+└─ Ticketing-and-Documentation/
+   ├─ README.md
+   ├─ Incident-Template/
+   │  └─ README.md
+   ├─ Resolution-Notes-Examples/
+   │  └─ README.md
+   └─ Escalation-Example/
+      └─ README.md
