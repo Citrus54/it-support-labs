@@ -5,20 +5,28 @@
 **Issue:**
 User can reach local systems but cannot access the internet or remote networks.
 
+### Business Impact
+
+The user could still communicate with local lab systems, but internet access and connectivity to remote networks were unavailable. In a production environment, this would prevent access to cloud services, external websites, updates, remote systems, and any business applications hosted outside the local subnet.
+
+### Initial Hypothesis
+
+The client may have a routing issue on its internet-facing adapter, most likely caused by an incorrect default gateway or IP configuration preventing traffice from leaving the local subnet.
+
 ---
 
-# Environment
+## Environment
 
 * Client OS: Windows 11 VM
 * Hypervisor: Oracle VirtualBox
 * Adapter 1: Host-only network (10.1.10.x lab network)
-* Adapter 2: NAT network (internet access)
+* Adapter 2: NAT (internet access)
 
 NAT adapter provides the external gateway used to reach the internet.
 
 ---
 
-# Skills Practiced
+## Skills Demonstrated
 
 * IP configuration troubleshooting
 * Default gateway logic
@@ -30,13 +38,15 @@ Commands used:
 ```
 ipconfig /all
 ping
-tracert
 route print
 ```
 
 ---
 
-# Working State Verification
+## Working State Verification
+
+Interpretation:
+The client has a valid IP configuration and a reachable default gateway on the NAT network, allowing traffic to leave the local subnet and reach the internet.
 
 ### Confirm IP Configuration
 
@@ -49,9 +59,9 @@ ipconfig /all
 Example output:
 
 ```
-IPv4 Address: 10.0.2.15
+IPv4 Address: 10.0.1.15
 Subnet Mask: 255.255.255.0
-Default Gateway: 10.0.2.2
+Default Gateway: 10.0.3.2
 ```
 
 This confirms the client has a valid IP configuration.
@@ -61,13 +71,13 @@ This confirms the client has a valid IP configuration.
 ### Verify Gateway Reachability
 
 ```
-ping 10.0.2.2
+ping 10.0.3.2
 ```
 
 Expected result:
 
 ```
-Reply from 10.0.2.2
+Reply from 10.0.3.2
 ```
 
 The client can reach its default gateway.
@@ -99,7 +109,7 @@ route print
 Key route:
 
 ```
-0.0.0.0          0.0.0.0        10.0.2.2
+0.0.0.0          0.0.0.0        10.0.3.2
 ```
 
 This is the **default route**, which tells the system where to send traffic destined for networks outside the local subnet.
@@ -120,13 +130,13 @@ Network Connections
 Change configuration from DHCP to manual and set:
 
 ```
-IP address:      10.0.2.15
+IP address:      10.0.1.15
 Subnet mask:     255.255.255.0
-Default gateway: 10.0.2.250
+Default gateway: 10.0.1.250
 DNS server:      8.8.8.8
 ```
 
-The gateway `10.0.2.250` does not exist on the network.
+The gateway `10.0.1.250` does not exist on the network.
 
 ---
 
@@ -138,10 +148,10 @@ The gateway `10.0.2.250` does not exist on the network.
 ping 8.8.8.8
 ```
 
-Result:
+Possible Result:
 
 ```
-Destination host unreachable
+Destination host unreachable or failed replies, indicating the client cannot forward traffic beyond the local subnet.
 ```
 
 The system cannot route traffic outside the local subnet.
@@ -157,14 +167,16 @@ route print
 Default route now shows:
 
 ```
-0.0.0.0          0.0.0.0        10.0.2.250
+0.0.0.0          0.0.0.0        10.0.1.250
 ```
 
 This indicates the system is attempting to send external traffic to a non-existent gateway.
 
 ---
+### Verification Summary
+After restoring the correct default gateway, the client was again able to reach off-subnet IP addresses. The routing table showed the default route pointing to 10.0.2.2, and external connectivity was successfully restored.
 
-# Root Cause
+## Root Cause
 
 The default gateway was incorrectly configured.
 
@@ -172,12 +184,12 @@ The default gateway is responsible for forwarding packets destined for networks 
 
 ---
 
-# Resolution
+## Resolution
 
 Restore the correct gateway configuration.
 
 ```
-Default Gateway: 10.0.2.2
+Default Gateway: 10.0.3.2
 ```
 
 Alternatively, re-enable DHCP so the correct configuration is assigned automatically.
@@ -207,7 +219,7 @@ route print
 Default route should again show:
 
 ```
-0.0.0.0          0.0.0.0        10.0.2.2
+0.0.0.0          0.0.0.0        10.0.3.2
 ```
 
 Internet connectivity is restored.
