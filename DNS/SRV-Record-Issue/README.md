@@ -268,3 +268,4 @@ Without these records, domain controller discovery fails.
 7. Netlogon repair command
 8. Successful SRV lookup after fix
 9. Successful `nltest` after fix
+10. Disabled Net BIOS
