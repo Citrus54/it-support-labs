@@ -26,6 +26,16 @@ NAT adapter provides the external gateway used to reach the internet.
 
 ---
 
+## Network Interfaces
+
+Adapter 1 – Host-Only Network
+Used for communication with the internal lab server.
+
+Adapter 2 – NAT Network
+Used for internet connectivity through the VirtualBox NAT gateway.
+
+---
+
 ## Skills Demonstrated
 
 * IP configuration troubleshooting
