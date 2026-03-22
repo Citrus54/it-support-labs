@@ -37,9 +37,11 @@ it-support-labs/
 │  │  └─ README.md
 │  ├─ Name-Resolution-vs-Connectivity/
 │  │  └─ README.md
+|  ├─ Default Gateway Misconfiguration
+|  |  └─ README.md
 │  └─ DHCP-Failure/
 │     └─ README.md
-│
+|
 ├─ File-Share-and-Permissions/
 │  ├─ README.md
 │  ├─ Shared-Folder-Access-Denied/
